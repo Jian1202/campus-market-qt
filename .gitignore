@@ -1,0 +1,47 @@
+# 本地构建与编辑器配置
+build/
+build-*/
+cmake-build-*/
+.qtcreator/
+.qtc_clangd/
+.cache/
+.vs/
+.idea/
+.vscode/
+*.user
+*.user.*
+.qmake.stash
+.qmake.cache
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+Makefile
+Makefile.Debug
+Makefile.Release
+compile_commands.json
+
+# 本机数据库、图片上传与运行记录
+database.ini
+*.db
+*.sqlite
+*.sqlite3
+__pycache__/
+*.pyc
+*.log
+*.pid
+.env
+.env.*
+AppData/
+存档/
+
+# 预编译运行库通过 Releases 提供
+运行程序/
+runtime/
+*.exe
+*.dll
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.zip

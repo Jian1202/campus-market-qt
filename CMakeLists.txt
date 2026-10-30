@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.21)
+project(CampusMarket VERSION 1.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Sql Charts)
+file(GLOB SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.h)
+add_library(CampusUi STATIC ${SOURCES})
+target_include_directories(CampusUi PUBLIC src)
+target_link_libraries(CampusUi PUBLIC Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Sql Qt6::Charts)
+add_executable(CampusMarket WIN32 main.cpp resources.qrc)
+target_include_directories(CampusMarket PRIVATE src)
+target_link_libraries(CampusMarket PRIVATE CampusUi)
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/database.ini")
+ configure_file(database.ini.example database.ini COPYONLY)
+endif()
+add_executable(CampusIntegration tests/integration.cpp src/DbManager.cpp)
+target_include_directories(CampusIntegration PRIVATE src)
+target_link_libraries(CampusIntegration PRIVATE Qt6::Core Qt6::Gui Qt6::Sql)
+
+add_executable(CampusPreview WIN32 tests/ui_preview.cpp resources.qrc)
+target_link_libraries(CampusPreview PRIVATE CampusUi)
+
+if(WIN32)
+ foreach(app CampusMarket CampusIntegration CampusPreview)
+  add_custom_command(TARGET ${app} POST_BUILD
+   COMMAND "$ENV{SystemRoot}/System32/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "${CMAKE_CURRENT_SOURCE_DIR}/tools/deploy_runtime.ps1"
+    -SourceRoot "${CMAKE_CURRENT_SOURCE_DIR}" -OutputDir "$<TARGET_FILE_DIR:${app}>" -QtVersion "${Qt6_VERSION}" -Architecture "x86_64"
+   VERBATIM)
+ endforeach()
+endif()

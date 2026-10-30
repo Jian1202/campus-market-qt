@@ -1,0 +1,175 @@
+/* ============================================================
+   THEME: Premium Dark (高级深灰极简)
+   特点：使用 #1A1A1A 代替纯黑，字体更大气，按钮符号优化
+   ============================================================ */
+
+/* 1. 全局基础 - 字体优化 */
+QWidget {
+    background-color: #FFFFFF;
+    color: #1A1A1A; /* 这里的文字也换成深灰，不那么刺眼 */
+    /* 字体栈：优先用 Segoe UI (Win10+默认)，没有则用微软雅黑 */
+    font-family: "Microsoft YaHei UI";
+    font-size: 14px;
+    outline: none; /* 去掉聚焦时的虚线框 */
+}
+
+/* 2. 登录页左侧品牌区 - 更有质感的黑 */
+QWidget#LoginSidePanel {
+    background-color: #1A1A1A; /* 核心修改：从 #000000 改为 #1A1A1A */
+    border-right: 1px solid #1A1A1A;
+}
+
+/* 左侧文字 */
+QLabel#LoginTitle {
+    color: #FFFFFF;
+    font-size: 36px; /* 字体加大 */
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-family: "Impact", "Segoe UI Black", "Microsoft YaHei"; /* 换个更硬朗的标题字体 */
+}
+QLabel#LoginSubtitle {
+    color: #DDDDDD;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei"; /* 副标题保持易读 */
+}
+
+/* 3. 登录页右侧表单区 */
+QWidget#LoginFormPanel {
+    background-color: #FFFFFF;
+}
+
+/* 4. 按钮体系 */
+QPushButton {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px; /* 稍微加一点点圆角(4px)，比直角更温润 */
+    padding: 8px 16px;
+    color: #1A1A1A;
+    font-weight: 600; /* 半粗 */
+}
+
+QPushButton:hover {
+    background-color: #F5F5F5;
+    border-color: #999999;
+}
+
+/* 主要按钮 (富态黑，无色差) */
+QPushButton#PrimaryButton {
+    background-color: #1A1A1A; /* 必须和 LoginSidePanel 颜色代码完全一致 */
+    border: none;              /* 关键：去掉边框，防止边框产生视觉色差 */
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 10px 0;           /* 稍微加高一点 */
+}
+
+QPushButton#PrimaryButton:hover {
+    background-color: #333333; /* 悬停变亮 */
+}
+
+QPushButton#PrimaryButton:pressed {
+    background-color: #000000; /* 按下全黑 */
+}
+
+/* 5. 输入框 - 更现代的下划线风格 (可选，或者保持方框) */
+QLineEdit, QTextEdit {
+    background-color: #FAFAFA; /* 极淡的灰底，护眼 */
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    padding: 12px; /* 更大的内边距 */
+    color: #1A1A1A;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #1A1A1A; /* 聚焦变黑框 */
+}
+
+/* 6. 消除背景灰框 */
+QLabel { background: transparent; }
+QCheckBox, QRadioButton, QGroupBox { background: transparent; }
+
+/* ============================================================
+   自定义标题栏样式 (重点修改)
+   ============================================================ */
+
+/* 标题栏容器 */
+QWidget#CustomTitleBar {
+    background-color: #1A1A1A; /* 保持与左侧一致 */
+}
+
+/* 标题文字 */
+QLabel#AppTitle {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+/* 窗口控制按钮 (最小化、最大化) */
+QPushButton#TitleBtn {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0px;
+    /* 👇 核心修改：单独把这里的字号放大，你的方块就变大了 */
+    font-size: 18px;
+    font-family: "Segoe UI Symbol", "Microsoft YaHei"; /* 符号字体 */
+}
+
+QPushButton#TitleBtn:hover {
+    background-color: #333333;
+}
+
+/* 关闭按钮 */
+QPushButton#TitleBtnClose {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0px;
+    font-size: 20px; /* 关闭的叉叉也可以大一点 */
+}
+
+QPushButton#TitleBtnClose:hover {
+    background-color: #C0392B; /* 稍微暗一点的红，不那么刺眼 */
+}
+/* ============================================================
+   圆角窗口样式 (Rounded Window)
+   ============================================================ */
+
+/* 1. 根窗口必须透明 */
+QWidget#AppRoot {
+    background: transparent;
+}
+
+/* 2. 主容器：负责显示圆角和背景色 */
+QFrame#MainFrame {
+    background-color: #FFFFFF;
+    border-radius: 12px; /* 这里控制圆角大小，12px 很舒服 */
+    border: 1px solid #333333; /* 加上边框防止和黑色背景混在一起 */
+}
+
+/* 3. 标题栏：只有左上和右上是圆角 */
+QWidget#CustomTitleBar {
+    background-color: #1A1A1A;
+    border-top-left-radius: 12px;  /* 跟随主容器 */
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+/* 4. 内容区 (Stack)：只有左下和右下是圆角 */
+/* 注意：如果页面背景不是透明的，可能需要给具体的 Page 也设圆角，
+   最简单的办法是让 stack 裁切溢出，但在 QSS 里 clip 比较麻烦。
+   通常只要底部的 Page 是白色的，配合 MainFrame 的圆角就看不出来了。
+*/
+QWidget#ContentArea {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* 修复：最大化时去掉圆角 (这步需要在 C++ 里动态控制，为了简单先忽略，
+   或者在 style.qss 里写死圆角，最大化时会有一点点空隙，这是无边框窗口的通病) */

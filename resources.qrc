@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>style.qss</file>
+        <file>logo.png</file>
+        <file>resources/images/preset/俯卧撑板子.png</file>
+        <file>resources/images/preset/哑铃.png</file>
+        <file>resources/images/preset/复习资料.png</file>
+        <file>resources/images/preset/女生日用品.png</file>
+        <file>resources/images/preset/平板.png</file>
+        <file>resources/images/preset/床帘.png</file>
+        <file>resources/images/preset/战戟8000.png</file>
+        <file>resources/images/preset/手机.png</file>
+        <file>resources/images/preset/拉力器.png</file>
+        <file>resources/images/preset/收纳盒.png</file>
+        <file>resources/images/preset/文件夹.png</file>
+        <file>resources/images/preset/洗衣液.png</file>
+        <file>resources/images/preset/电动车.png</file>
+        <file>resources/images/preset/电动车2.png</file>
+        <file>resources/images/preset/相机.png</file>
+        <file>resources/images/preset/耳机.png</file>
+        <file>resources/images/preset/自行车.png</file>
+        <file>resources/images/preset/自行车2.png</file>
+        <file>resources/images/preset/草稿本.png</file>
+        <file>resources/images/preset/跳绳.png</file>
+        <file>resources/images/preset/铅笔.png</file>
+    </qresource>
+</RCC>
